@@ -26,8 +26,8 @@ exports.login = (req, res) => {
                 const { _id, firstName, lastName, email, role, fullName } = user;
                 res.status(200).json({ token, user: { _id, firstName, lastName, email, role, fullName } });
             } else {
-                // Wrong PWD
-                return res.status(400).json({ message: 'Password is incorrect.' });
+                // Wrong PWD || User Role incorrect
+                return res.status(400).json({ message: `Password is incorrect. (${user.role})` });
             }
         } else return res.status(400).json({ message: 'Something went wrong.' });
     });
